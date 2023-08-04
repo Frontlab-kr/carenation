@@ -88,15 +88,55 @@
 				<div class="carenation-login-form__title">아이디 찾기</div>
 				<div class="carenation-login-form__text">이름과 이메일로 아이디를 조회합니다.</div>
 				<div class="carenation-login-form__result">
-					홍길동님의 아이디는<br />
-					Username@gmail.com 입니다.
+					홍길동님의 아이디는
+					<p><strong>Username@gmail.com</strong> 입니다.</p>
 				</div>
-				<a href="" class="btn btn-primary btn-lg">로그인으로 이동</a>
+				<a href="" class="btn btn-primary btn-lg btn-block btn-round">로그인으로 이동</a>
 				<div class="carenation-login-form__link">
-					<a href="">아이디 찾기</a>
-					<a href="">패스워드 찾기</a>
+					<p>
+						<a href="">로그인</a>
+					</p>
+					<p>
+						<a href="">패스워드 찾기</a>
+					</p>
 				</div>
 			</div>
 		</div>
+		<script>
+			$(document).ready(function () {
+				$('.carenation-login-form__id input,.carenation-login-form__pw input').on('input', function () {
+					if ($(this).val().trim() !== '') {
+						$(this).parents('div').addClass('active');
+					} else {
+						$(this).parents('div').removeClass('active');
+					}
+				});
+				$('.carenation-login-form__id button').on('click', function () {
+					$(this).parents('.carenation-login-form__id').find('input').val('');
+					$(this).parents('.carenation-login-form__id').removeClass('active');
+					return false;
+				});
+			});
+			$(document).ready(function () {
+				$('.carenation-login-form__pw button').on('click', function () {
+					var $passwordInput = $(this).parents('.carenation-login-form__pw').find('input');
+					var inputType = $passwordInput.attr('type');
+
+					if (inputType === 'password') {
+						$passwordInput.attr('type', 'text');
+					} else {
+						$passwordInput.attr('type', 'password');
+					}
+
+					if ($passwordInput.attr('type') === 'password') {
+						$(this).parents('.carenation-login-form__pw').removeClass('none');
+					} else {
+						$(this).parents('.carenation-login-form__pw').addClass('none');
+					}
+
+					return false;
+				});
+			});
+		</script>
 	</body>
 </html>
